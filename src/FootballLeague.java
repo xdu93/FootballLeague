@@ -66,4 +66,41 @@ public class FootballLeague {
         team2.power = power2;
     }
 
+    public void winner() {
+        Team teamWinner = listOfTeams[0];
+        int pointOfWinner = leaguePoints[0];
+
+        for (int i = 1; i < leaguePoints.length; i++) {
+            if (pointOfWinner < leaguePoints[i]) {
+                pointOfWinner = leaguePoints[i];
+                teamWinner = listOfTeams[i];
+            }
+        }
+
+        //жребий
+        if (pointOfWinner == 6 || pointOfWinner == 7 || pointOfWinner == 5) {
+
+            int count = 0;
+            for (int i = 0; i < listOfTeams.length; i++) {
+                if (this.leaguePoints[i] == pointOfWinner) {
+                    count++;
+                }
+            }
+            if (count > 1) {
+                System.out.println("У нескольких команд одинаковое кол-во очков. Необходима жеребьёвка для определения победителя.");
+                Team[] winners = new Team[count];
+                int random = (int) ((Math.random()) * (count) + 0);
+                for (int i = 0; i < listOfTeams.length; i++) {
+                    if (this.leaguePoints[i] == pointOfWinner) {
+                        winners[count - 1] = listOfTeams[i];
+                        count--;
+                    }
+                }
+                System.out.println("Победитель: " + winners[random].name);
+            } else System.out.println("Победитель: " + teamWinner.name);
+        } else {
+            System.out.println("Победитель: " + teamWinner.name);
+        }
+    }
+
 }
