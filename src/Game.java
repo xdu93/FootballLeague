@@ -26,6 +26,7 @@ public class Game {
         playGame();
         FootballLeague.fillTables();
         FootballLeague.printTableOfLeague("Конец турнира");
+        winner();
     }
 
     //Метод для проведения матчей между всеми командами, каждая команда играет с каждой один раз
@@ -36,9 +37,38 @@ public class Game {
             }
         }
     }
-    
-    public static void winner(){
-        
-    }
 
+    public static void winner(){
+        Team teamWinner = FootballLeague.listOfTeams[0];
+        int pointOfWinner = FootballLeague.leaguePoints[0];
+
+        for (int i = 1; i < FootballLeague.leaguePoints.length; i++) {
+            if (pointOfWinner < FootballLeague.leaguePoints[i]){
+                pointOfWinner = FootballLeague.leaguePoints[i];
+                teamWinner = FootballLeague.listOfTeams[i];
+            }
+        }
+
+        //жребий
+        if (pointOfWinner == 6){
+            System.out.println("У нескольких команд по 6 очков. Необходима жеребьёвка, для определения победителя.");
+            int count = 0;
+            for (int i = 0; i < FootballLeague.listOfTeams.length; i++) {
+                if (FootballLeague.leaguePoints[i] == 6){
+                    count++;
+                }
+            }
+            Team[] winners = new Team[count];
+            int random = (int) ((Math.random()) * (count)+0);
+            for (int i = 0; i < FootballLeague.listOfTeams.length; i++) {
+                if (FootballLeague.leaguePoints[i] == 6){
+                    winners[count-1] = FootballLeague.listOfTeams[i];
+                    count--;
+                }
+            }
+            System.out.println("Победитель: "+winners[random].name);
+        } else {
+            System.out.println("Победитель: "+teamWinner.name);
+        }
+    }
 }
