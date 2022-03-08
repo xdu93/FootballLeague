@@ -5,5 +5,10 @@ public class Team {
     public int power;
     public int points;
 
-
+    //Конструктор Team
+    public Team(String name, int power) {
+        this.name = name;
+        this.power = power;
+        this.points = 0;
+    }
 }

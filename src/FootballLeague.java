@@ -5,13 +5,21 @@ public class FootballLeague {
      3 - Название команд
      4 - Кол-во очков
      */
-    public static int[] range = {1, 2, 3, 4};
-    public static Team[] listOfTeams = new Team[4];
-    public static String[] listOfTeamsNames = new String[4];
-    public static int [] leaguePoints = new int[4];
+    public int[] range;
+    public Team[] listOfTeams;
+    public String[] listOfTeamsNames;
+    public int [] leaguePoints;
+
+    //Конструктор FootballLeague
+    public FootballLeague(int[] range, Team[] listOfTeams, String[] listOfTeamsNames, int[] leaguePoints) {
+        this.range = range;
+        this.listOfTeams = listOfTeams;
+        this.listOfTeamsNames = listOfTeamsNames;
+        this.leaguePoints = leaguePoints;
+    }
 
     //метод printTableOfLeague выводит на печать турнирную таблицу на данный момент
-    public static void printTableOfLeague(String str){
+    public void printTableOfLeague(String str){
         System.out.println("______________");
         System.out.println(str);
         System.out.println("Футбольная лига-1:");
@@ -23,10 +31,10 @@ public class FootballLeague {
     }
 
     //метод заполняет турнирную таблицу текущими значениями
-    public static void fillTables() {
-        for (int i = 0; i < listOfTeams.length; i++) {
-            listOfTeamsNames[i] = listOfTeams[i].name;
-        }
+    public void fillTables() {
+        //for (int i = 0; i < this.listOfTeams.length; i++) {
+            //this.listOfTeamsNames[i] = this.listOfTeams[i].name;
+       //}
         for (int i = 0; i < listOfTeamsNames.length; i++) {
             leaguePoints[i] = listOfTeams[i].points;
         }
